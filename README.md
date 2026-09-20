@@ -21,4 +21,4 @@ This guide will serve as a foundation for creating your own extensions, custom e
 
 ## Documentation
 
-You can find the complete API documentation in the `DOCUMENTATION/DEVELOPER_API.md` file within the core plugin's files.
+https://mode-development.gitbook.io/pulseprison
