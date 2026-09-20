@@ -6,9 +6,10 @@ This guide will serve as a foundation for creating your own extensions, custom e
 ## Features included in this example
 
 1. **Obtaining the API**: Safely using `PulsePrisonProvider.get()` inside `onEnable`.
-2. **Events (Listeners)**: Listening to and modifying or cancelling PulsePrison's custom events, such as `PlayerRebirthEvent` or `MineResetEvent`.
+2. **Events (Listeners)**: Listening to and modifying or cancelling PulsePrison's custom events, such as `PlayerRebirthEvent`, `MineResetEvent`, `MarketPriceChangeEvent`, and `PlayerLevelUpEvent`.
 3. **Custom Actions**: Registering a custom action tag (e.g., `[heal]`) that can be used in any GUI menu or leveling reward in the core plugin.
 4. **Custom Enchantments**: Creating a Java-based enchantment (`BaseEnchant`) that hooks directly into the mining pipeline, utilizing per-level probability rates.
+5. **Live Data Command**: The `/prisonaddon` command demonstrates how to fetch dynamic market data, custom currency balances, and player progression statistics in real-time.
 
 ## How to build this project
 
@@ -21,5 +22,3 @@ This guide will serve as a foundation for creating your own extensions, custom e
 ## Documentation
 
 You can find the complete API documentation in the `DOCUMENTATION/DEVELOPER_API.md` file within the core plugin's files.
-
-

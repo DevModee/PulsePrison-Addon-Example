@@ -26,7 +26,12 @@ public final class PulsePrisonAddon extends JavaPlugin {
         // 1. Register our Listener for PulsePrison events
         getServer().getPluginManager().registerEvents(new PrisonListener(prisonAPI), this);
 
-        // 2. Register a custom bracket action [heal] to use in menus and rewards
+        // 2. Register our Example Command (Market and Progression fetching)
+        if (getCommand("prisonaddon") != null) {
+            getCommand("prisonaddon").setExecutor(new AddonCommand(prisonAPI));
+        }
+
+        // 3. Register a custom bracket action [heal] to use in menus and rewards
         // Usage in PulsePrison YAML files: - "[heal] 5"
         prisonAPI.actions().register("heal", (player, arg) -> {
             try {
@@ -39,7 +44,7 @@ public final class PulsePrisonAddon extends JavaPlugin {
             }
         });
 
-        // 3. Register our custom enchantment written entirely in Java
+        // 4. Register our custom enchantment written entirely in Java
         // This will automatically inject it into pickaxe menus, masteries, and the mining pipeline.
         prisonAPI.pickaxe().registerEnchant(new SoulHarvestEnchant(SoulHarvestEnchant.params()));
 

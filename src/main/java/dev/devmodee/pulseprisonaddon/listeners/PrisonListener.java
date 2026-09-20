@@ -1,7 +1,9 @@
 package dev.devmodee.pulseprisonaddon.listeners;
 
 import dev.aeros.pulseprison.api.PulsePrisonAPI;
+import dev.aeros.pulseprison.api.events.MarketPriceChangeEvent;
 import dev.aeros.pulseprison.api.events.MineResetEvent;
+import dev.aeros.pulseprison.api.events.PlayerLevelUpEvent;
 import dev.aeros.pulseprison.api.events.PlayerRebirthEvent;
 import dev.aeros.pulseprison.api.events.RobotProduceEvent;
 import org.bukkit.entity.Player;
@@ -31,6 +33,16 @@ public class PrisonListener implements Listener {
     }
 
     /**
+     * React to a player leveling up in any track (levels.yml).
+     * Great for shooting fireworks or playing custom sounds!
+     */
+    @EventHandler
+    public void onLevelUp(PlayerLevelUpEvent event) {
+        Player player = event.getPlayer();
+        player.sendTitle("§aLevel Up!", "§7Track: " + event.getTrack() + " §8| §7Level: " + event.getNewLevel(), 10, 40, 10);
+    }
+
+    /**
      * React to a mine reset.
      * Useful when we want to despawn custom entities, notify users,
      * or prevent the reset under certain conditions.
@@ -53,5 +65,19 @@ public class PrisonListener implements Listener {
         
         // The event allows us to change the production BEFORE it finishes registering
         // event.setBlocksProduced(generated * 2); // (e.g., a global double robot production event)
+    }
+
+    /**
+     * Listen to the dynamic market fluctuating.
+     * This event triggers when a block price is recalculated.
+     */
+    @EventHandler
+    public void onMarketMove(MarketPriceChangeEvent event) {
+        double delta = (event.getNewMultiplier() - event.getPreviousMultiplier()) * 100.0D;
+        
+        // Let's log heavily crashing or surging items.
+        if (Math.abs(delta) > 40.0D) {
+            System.out.println("[PulsePrisonAddon] Huge market shift for " + event.getMaterial() + "! Delta: " + delta + "%");
+        }
     }
 }

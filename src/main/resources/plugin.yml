@@ -5,3 +5,8 @@ api-version: '1.20'
 depend: [PulsePrison]
 authors: [DevModee]
 description: An example add-on to demonstrate the PulsePrison Developer API.
+
+commands:
+  prisonaddon:
+    description: Displays live stats from PulsePrison's progression and market.
+    usage: /<command>
